@@ -4,46 +4,43 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
-    [SerializeField] float gravity;
-    [SerializeField] Vector2 velocity;
-    [SerializeField] float jumpVelocity;
-    [SerializeField] public float groundHeight = 10f;
-    [SerializeField] public bool isGrounded = false;
+    [SerializeField] private float jumpingPower = 10f;
 
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] private bool doubleJump;
+
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
+
+    void Update()
     {
+        if (IsGrounded() && !Input.GetButton("Jump"))
+        {
+            doubleJump = false;
+        }
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (IsGrounded() || doubleJump)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+
+                doubleJump = !doubleJump;
+            }
+        }
+
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        }
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private bool IsGrounded()
     {
-        if (isGrounded)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                isGrounded = false;
-                velocity.y = jumpVelocity;
-            }
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        Vector2 pos = transform.position;
-        if (!isGrounded)
-        {
-            pos.y += velocity.y * Time.fixedDeltaTime;
-            velocity.y += gravity * Time.fixedDeltaTime;
-
-            if (pos.y <= groundHeight)
-            {
-                pos.y = groundHeight;
-                isGrounded = true;
-            }
-        }
-
-        transform.position = pos; 
+        return Physics2D.OverlapCircle(groundCheck.position,0.2f, groundLayer);
     }
 }
+
+   
