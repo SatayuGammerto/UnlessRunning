@@ -4,24 +4,56 @@ using UnityEngine;
 
 public class PlatformCtrl : MonoBehaviour
 {
-    [SerializeField] private GameObject patternMove;
-    [SerializeField] private GameObject[] patternRandom;
+    [SerializeField] private PlayerCtrl playerMove;
+    [SerializeField] private GameObject[] patternLvl;
     [SerializeField] private float speed;
     [SerializeField] private float speedAcc;
-    
+    [Space(20)]
 
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
+    [SerializeField] private float minWide;
+    [SerializeField] private float mexWide;
+    [SerializeField] private float minHigh;
+    [SerializeField] private float mexHigh;
+
+    bool hasPlatform = true;
 
     // Update is called once per frame
     private void Update()
     {
-        
-        patternMove.transform.Translate(Vector3.left*speed*Time.deltaTime);
+        playerMove.transform.Translate(Vector3.right*speed*Time.deltaTime);
         speed += speedAcc * Time.deltaTime;
+
+        if (!hasPlatform)
+        {
+            SpawnPlatform();
+
+            hasPlatform = true;
+        }
+      
+    }
+
+    public void SpawnPlatform()
+    {
+        var randomWide = Random.Range(minWide, mexWide);
+        var randomHigh = Random.Range(minHigh, mexHigh);
+
+        Instantiate(patternLvl[Random.Range(0,patternLvl.Length)], new Vector3(transform.position.x + randomWide, transform.position.y + randomHigh, 0), Quaternion.identity);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("SpawnChack"))
+        {
+            hasPlatform = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("SpawnChack"))
+        {
+            hasPlatform = false;
+        }
     }
 
 }
