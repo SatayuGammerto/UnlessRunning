@@ -6,7 +6,7 @@ public class PlatformCtrl : MonoBehaviour
 {
     [SerializeField] private PlayerCtrl playerMove;
     [SerializeField] private GameObject[] patternLvl;
-    [SerializeField] private float speed;
+    public float speed;
     [SerializeField] private float speedAcc;
     [Space(20)]
 
