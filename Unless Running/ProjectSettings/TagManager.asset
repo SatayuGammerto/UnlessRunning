@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Spikes
   - SpawnChack
+  - Floor
   layers:
   - Default
   - TransparentFX

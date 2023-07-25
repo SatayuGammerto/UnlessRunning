@@ -305,6 +305,7 @@ MonoBehaviour:
     m_Bits: 64
   animator: {fileID: 97128898}
   controlManager: {fileID: 207252678}
+  GameOverPanal: {fileID: 1101830910}
 --- !u!95 &97128898
 Animator:
   serializedVersion: 5
@@ -338,6 +339,7 @@ GameObject:
   - component: {fileID: 207252681}
   - component: {fileID: 207252682}
   - component: {fileID: 207252683}
+  - component: {fileID: 207252684}
   m_Layer: 0
   m_Name: ControlManager
   m_TagString: Untagged
@@ -470,6 +472,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 250569565}
+--- !u!114 &207252684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207252678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7439a3f79c6c83746ba03f36c10b6de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &250569562
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,7 +519,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 190.4, y: 174.77}
+  m_AnchoredPosition: {x: 174.28, y: 159.27}
   m_SizeDelta: {x: 351.44, y: 75.4558}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &250569565
@@ -771,7 +785,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.21364, y: 10.349998, z: -10}
+  m_LocalPosition: {x: 15.220472, y: 10.349998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1202,6 +1216,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8928095836343741015, guid: 9aa84e6ee8162c5479ee62d002f8dcd5, type: 3}
+      propertyPath: destroyTime
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1290,7 +1308,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1412412975}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 207252684}
+        m_TargetAssemblyTypeName: ScenceCtrl, Assembly-CSharp
+        m_MethodName: ExitScence
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1412412975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1393,7 +1423,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1420546156}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.21364, y: 10.349998, z: -10}
+  m_LocalPosition: {x: 15.220472, y: 10.349998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1584,7 +1614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1887,7 +1917,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2145691417}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 207252684}
+        m_TargetAssemblyTypeName: ScenceCtrl, Assembly-CSharp
+        m_MethodName: PlayScence
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2145691417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1989,6 +2031,10 @@ PrefabInstance:
     - target: {fileID: 1666210377714301010, guid: 9aa84e6ee8162c5479ee62d002f8dcd5, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8928095836343741015, guid: 9aa84e6ee8162c5479ee62d002f8dcd5, type: 3}
+      propertyPath: destroyTime
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

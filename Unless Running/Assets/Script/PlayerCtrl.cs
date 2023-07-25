@@ -14,6 +14,7 @@ public class PlayerCtrl : MonoBehaviour
     public Animator animator;
     private PlatformCtrl speedPlayer;
     [SerializeField] private GameObject controlManager;
+    public GameObject GameOverPanal;
 
     private void Start()
     {
@@ -52,6 +53,18 @@ public class PlayerCtrl : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Spikes"))
+        {
+            gameObject.SetActive(false);
+
+            GameOverPanal.SetActive(true);
+            Time.timeScale = 0f;
+            return; 
+        }
     }
 }
 

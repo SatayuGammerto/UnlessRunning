@@ -23,7 +23,7 @@ public class Score : MonoBehaviour
     void FixedUpdate()
     {
         scoreNum += (int)scoreSpeed.speed;
-        scoreText.text = "Score" + scoreNum / 500;
+        scoreText.text = "Score : " + scoreNum / 500;
     }
 
 }

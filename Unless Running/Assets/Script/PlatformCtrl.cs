@@ -29,7 +29,7 @@ public class PlatformCtrl : MonoBehaviour
 
             hasPlatform = true;
         }
-      
+
     }
 
     public void SpawnPlatform()
